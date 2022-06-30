@@ -11,14 +11,6 @@ type SomeStruct struct {
 	bar int
 }
 
-func initTestData() []any {
-	arr := make([]any, 1000)
-	for i := range arr {
-		arr[i] = SomeStruct{foo: rand.Int(), bar: rand.Int()}
-	}
-	return arr
-}
-
 //go:noinline
 func barNoCheck(c any) int {
 	return c.(SomeStruct).bar
@@ -64,5 +56,10 @@ func BenchmarkSumCheck(b *testing.B) {
 	}
 }
 
-// go test -bench=. -benchmem -cpuprofile profile.out
-//  go tool pprof rebrain_asm.test profile.out
+func initTestData() []any {
+	arr := make([]any, 1000)
+	for i := range arr {
+		arr[i] = SomeStruct{foo: rand.Int(), bar: rand.Int()}
+	}
+	return arr
+}
