@@ -19,6 +19,10 @@ func AccumulateGeneric(src []byte) int {
 }
 
 func AccumulateAsm(src []byte) int {
+	if len(src) < 16 {
+		return AccumulateGeneric(src)
+	}
+
 	nSrcByte := len(src)
 	srcHeader := (*reflect.SliceHeader)(unsafe.Pointer(&src))
 

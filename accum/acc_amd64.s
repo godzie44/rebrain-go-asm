@@ -1,4 +1,4 @@
-TEXT ·accumulateAsm(SB),$0-24
+TEXT ·accumulateAsm(SB),$0-16
         MOVQ	src+0(FP), DI
         MOVQ    nByte+8(FP), BX
         PXOR    X0, X0
